@@ -1,0 +1,65 @@
+#Inkscape_3Drag
+#Inkscape_3Drag DAT file
+#Regexp to change Inkscape G-code file for Repetier+3Drag
+#see HOWTO_text, § 3.4.6
+# note: regex in block mode
+
+#replaces  (,) -> (.)
+regex1=,
+replacement1=.
+
+#deletes M??.. lines
+regex2=  M.*?\\r?\\r|\\n
+replacement2=
+
+#deletes  G90 lines
+regex3=G90.*?\\r?\\r|\\n
+replacement3=
+
+# replaces  F100 ->  Z5 F100
+regex4=F100
+replacement4=Z5 F100
+
+# replaces  F10. ->  Z2 F10.
+regex5=F10\\.
+replacement5=Z2 F10.
+
+#----- 200-START CODE HERE
+
+# after G21 adds START 1 code
+regex201=G21.*?(\\r?\\r|\\n)
+replacement201=G21$1G92 X0 Y0 Z3    ; START1: set actual position as (0,0,3) $1
+
+#------ 300-END CODE HERE
+
+#deletes  G91 + G0 X0 Y0 final code, adds END 2 code
+regex300= G91[ \\t]*(\\r?\\r|\\n)G0\\W*X0\\W*Y0[ \\t]*\\r?\\r|\\n
+replacement300=G00 X0 Y0 Z3         ; END2: back to start point 0,0,3 $1
+
+#------ 800-optional cleanup
+
+#removes initial spaces
+regex804=(\\r?\\r|\\n)[ ]+
+replacement804=$1
+
+#removes 2 empty lines
+regex800=(\\r?\\r|\\n)\\r?\\r|\\n\\r?\\r|\\n
+replacement800= $1
+
+#removes initial empty line
+regex801=^\\r?\\r|\\n
+replacement801=
+
+#removes more initial empty line
+regex802=^\\r?\\r|\\n
+replacement802=
+
+#removes .0[0]*
+regex803=\\.0+(\\D)
+replacement803=$1
+
+#----- 900-starting comments
+
+regex900=^(.*)(\\r?\\r|\\n)
+replacement900=; G.code for 3Drag + Repetier$2; Built by $V using $D.dat ($T)$2; From: $F$2; Default speed: F100, F10 $2; Default Zs: Z5, Z3, Z2$2; $C$2; ---------------- $2$1$2
+

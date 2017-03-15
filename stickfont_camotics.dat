@@ -1,0 +1,41 @@
+#StickFont_CAMotics DAT file
+#Regexp to change StickFont G-code file for CAMotics
+#see HOWTO_text, § 3.3.4
+# note: regex in block mode
+
+#replaces  (,) -> (.)
+regex1=,
+replacement1=.
+
+#------ 200-deletes END code G28
+
+#deletes  G28 X G28 Y Z..
+regex201=G28.*\\r?(\\r|\\n)
+replacement201=
+
+#------ 800-optional cleanup
+
+#removes initial spaces
+regex804=(\\r?\\r|\\n)[ ]+
+replacement804=$1
+
+#removes 2 empty lines
+regex800=(\\r?\\r|\\n)\\r?\\r|\\n\\r?\\r|\\n
+replacement800= $1
+
+#removes initial empty line
+regex801=^\\r?\\r|\\n
+replacement801=
+
+#removes more initial empty line
+regex802=^\\r?\\r|\\n
+replacement802=
+
+#removes .0[0]*
+regex803=\\.0+(\\D)
+replacement803=$1
+
+#----- 900-starting comments
+
+regex900=^(.*)(\\r?\\r|\\n)
+replacement900=; G.code for CAMotics simulator$2; Built by $V using $D.dat ($T)$2; From: $F$2; Default speed: F100, F10 $2; Default Zs: Z30, Z3, Z2$2; $C$2; ---------------- $2$1$2
