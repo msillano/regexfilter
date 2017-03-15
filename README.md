@@ -2,9 +2,9 @@ General purpose filter, replaces regular expressions (regex) in the input stream
 It works like egrep and sed, or like Perl regex, but it is simpler and it can be used on Unix/Linux and Windows O.S.
 
 Precondition:
--input: standard input (allows piping) or file.
--output: standard output or file
--regex: all pairs regex/replacement are in a file.
+-  input: standard input (allows piping) or file.
+-  output: standard output or file
+-  regex: all pairs regex/replacement are in a file.
 
 It works line by line or on whole input. macro expansions in replacement strings.
 The sample DAT files transfoms files in G-code dialects for different applications (for 3D printers):
@@ -15,8 +15,8 @@ The sample DAT files transfoms files in G-code dialects for different applicatio
 
 Here more information on regex
       
-Version:
-4.02 10/11/25 (c) M.Sillano 2006-2011
+The source code offerts classes for develop java CLI custom applications.
+
 Filters the input stream, via java.String.replaceAll(), using regex/replacement pairs.
 All regex/replacement pairs are stored in an ASCII file, and they are all processed in sequence for every input line or for the whole input in block mode.
 
