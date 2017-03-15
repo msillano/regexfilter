@@ -7,13 +7,14 @@ Precondition:
 -  regex: all pairs regex/replacement are in a file.
 
 It works line by line or on whole input. macro expansions in replacement strings.
+
 The sample DAT files transfoms files in G-code dialects for different applications (for 3D printers):
    1. Inkscape to CAMotics
    2. Inkscape to 3DRAG printer
    3. Stickfonts to CAMotics
    4. Stickfonts to 3DRAG printer
 
-Here more information on regex
+More information on regex in file README.html
       
 The source code offerts classes for develop java CLI custom applications.
 
