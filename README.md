@@ -14,7 +14,7 @@ The sample DAT files transfoms files in G-code dialects for different applicatio
    3. Stickfonts to CAMotics
    4. Stickfonts to 3DRAG printer
 
-More information on regex in file README.html
+More information on regex in file README.pdf (README.html)
       
 The source code offerts classes for develop java CLI custom applications.
 
